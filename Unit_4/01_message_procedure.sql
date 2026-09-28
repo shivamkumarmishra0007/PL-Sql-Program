@@ -1,0 +1,16 @@
+SET SERVEROUTPUT ON
+
+CREATE OR REPLACE PROCEDURE SHOW_MESSAGE
+IS
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('Hello! This is a user-defined procedure.');
+END;
+/
+
+BEGIN
+  SHOW_MESSAGE;
+END;
+/
+
+PROMPT To call from SQL*Plus command line:
+PROMPT EXEC SHOW_MESSAGE;

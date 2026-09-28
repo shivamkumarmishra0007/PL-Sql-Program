@@ -1,0 +1,31 @@
+SET SERVEROUTPUT ON
+SET VERIFY OFF
+
+CREATE OR REPLACE PROCEDURE SEARCH_EMP_NO(
+  P_EID IN NUMBER,
+  P_FOUND OUT VARCHAR2
+)
+IS
+  V_DUMMY NUMBER;
+BEGIN
+  SELECT EID INTO V_DUMMY FROM EMP WHERE EID = P_EID;
+  P_FOUND := 'YES';
+EXCEPTION
+  WHEN NO_DATA_FOUND THEN
+    P_FOUND := 'NO';
+END;
+/
+
+ACCEPT p_eid NUMBER PROMPT 'Enter employee number: '
+
+DECLARE
+  v_found VARCHAR2(3);
+BEGIN
+  SEARCH_EMP_NO(&p_eid,v_found);
+  IF v_found = 'YES' THEN
+    DBMS_OUTPUT.PUT_LINE('Employee number is present.');
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('Employee number is not present.');
+  END IF;
+END;
+/
