@@ -1,0 +1,16 @@
+SET SERVEROUTPUT ON
+
+BEGIN
+  FOR r IN (
+    SELECT ENAME, BASIC_SAL
+    FROM (
+      SELECT ENAME, BASIC_SAL
+      FROM EMP
+      ORDER BY BASIC_SAL DESC
+    )
+    WHERE ROWNUM <= 3
+  ) LOOP
+    DBMS_OUTPUT.PUT_LINE(r.ENAME || ' | Basic Salary = ' || r.BASIC_SAL);
+  END LOOP;
+END;
+/
