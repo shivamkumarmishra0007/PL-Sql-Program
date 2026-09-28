@@ -1,0 +1,12 @@
+SET SERVEROUTPUT ON
+
+DECLARE
+  v_result NUMBER;
+BEGIN
+  v_result := 100 / 0;
+  DBMS_OUTPUT.PUT_LINE(v_result);
+EXCEPTION
+  WHEN ZERO_DIVIDE THEN
+    DBMS_OUTPUT.PUT_LINE('ZERO_DIVIDE exception handled successfully.');
+END;
+/
